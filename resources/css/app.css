@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+
+/* Beha design tokens — applied via tailwind.config.js theme.extend */
+@theme {
+  --color-beha-navy: #0F3A5F;
+  --color-beha-navy-600: #145374;
+  --color-beha-gold: #C8A24B;
+  --color-beha-gold-soft: #E8D7A0;
+  --font-sans: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  --font-heading: 'Lora', 'Noto Serif SC', Georgia, serif;
+}
+
+/* Base body */
+body {
+  font-family: var(--font-sans);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Focus rings */
+*:focus-visible {
+  outline: 2px solid var(--color-beha-navy);
+  outline-offset: 2px;
+}
+
+/* Status badge color helpers */
+.badge-gray   { background: #F1F5F9; color: #475569; }
+.badge-amber  { background: #FEF3C7; color: #92400E; }
+.badge-blue   { background: #DBEAFE; color: #1E40AF; }
+.badge-green  { background: #DCFCE7; color: #166534; }
+.badge-red    { background: #FEE2E2; color: #991B1B; }
+.badge-orange { background: #FFEDD5; color: #9A3412; }
