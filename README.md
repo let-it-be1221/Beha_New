@@ -125,12 +125,12 @@ cd Beha_New
 
 1. Start **Apache** + **MySQL** in XAMPP Control Panel
 2. Open <http://localhost/phpmyadmin>
-3. Click **New** → Database name: `beha_new` → Collation: `utf8mb4_0900_ai_ci` → **Create**
+3. Click **New** → Database name: `beha_new` → Collation: `utf8mb4_unicode_ci` → **Create**
 
 **Or via command line:**
 
 ```bash
-"C:\xampp\mysql\bin\mysql.exe" -u root -e "CREATE DATABASE beha_new CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;"
+"C:\xampp\mysql\bin\mysql.exe" -u root -e "CREATE DATABASE beha_new CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 ```
 
 ### 3. Configure the backend
@@ -345,6 +345,22 @@ Wrong `DB_PASSWORD` in `backend/.env`. XAMPP defaults to empty, but if you set a
 ### `SQLSTATE[HY000] [1049] Unknown database 'beha_new'`
 
 Create the database first (step 2 above).
+
+### `php artisan serve` cannot bind to port 8000
+
+Some Windows configurations reserve ports 7938–8037, which includes Laravel's default port 8000. Use an available port outside that range, for example:
+
+```bash
+php artisan serve --port=8080
+```
+
+Set `APP_URL` to `http://localhost:8080` in `backend/.env`, allow that origin in `CORS_ALLOWED_ORIGINS`, and add `localhost:8080` and `127.0.0.1:8080` to `SANCTUM_STATEFUL_DOMAINS`. In `frontend/.env.local`, set:
+
+```env
+VITE_API_URL=http://localhost:8080/api/v1
+```
+
+Restart both development servers after changing these settings. Do not remove Windows' reserved port ranges to work around this issue.
 
 ### Composer security advisory block on `laravel/framework`
 

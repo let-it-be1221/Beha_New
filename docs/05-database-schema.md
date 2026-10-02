@@ -7,7 +7,7 @@
 ## Conventions
 
 - Engine: InnoDB.
-- Charset: `utf8mb4`, collation `utf8mb4_0900_ai_ci`.
+- Charset: `utf8mb4`, collation `utf8mb4_unicode_ci` (compatible with MySQL and MariaDB versions commonly bundled with XAMPP).
 - Primary keys: `BIGINT UNSIGNED AUTO_INCREMENT`.
 - Foreign keys: `ON DELETE RESTRICT` (audit integrity) unless noted.
 - Every business table has `created_at`, `updated_at`, and `deleted_at TIMESTAMP NULL`.

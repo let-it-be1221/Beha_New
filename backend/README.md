@@ -39,7 +39,7 @@ DB_PASSWORD=
 Create the database before migrating:
 
 ```bash
-"C:\xampp\mysql\bin\mysql.exe" -u root -e "CREATE DATABASE beha_new CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;"
+"C:\xampp\mysql\bin\mysql.exe" -u root -e "CREATE DATABASE beha_new CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 ```
 
 Or via phpMyAdmin at <http://localhost/phpmyadmin>.
