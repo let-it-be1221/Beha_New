@@ -5,6 +5,8 @@
  * Used for sys-admin-only management interfaces (RBAC, settings, audit).
  * Public-facing dashboards still use Blade + Livewire.
  */
+$discoverPanels = in_array(env('APP_ENV', 'production'), ['local', 'staging'], true);
+
 return [
     'panel' => [
         'id' => 'admin',
@@ -14,9 +16,9 @@ return [
             'primary' => '#0F3A5F',
             'secondary' => '#C8A24B',
         ],
-        'discover_resources' => in_array(app()->environment(), ['local', 'staging']),
-        'discover_pages' => in_array(app()->environment(), ['local', 'staging']),
-        'discover_widgets' => in_array(app()->environment(), ['local', 'staging']),
+        'discover_resources' => $discoverPanels,
+        'discover_pages' => $discoverPanels,
+        'discover_widgets' => $discoverPanels,
         'middleware' => [
             'web',
             \App\Http\Middleware\RequireRole::class . ':system_administrator',

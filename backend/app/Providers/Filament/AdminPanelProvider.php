@@ -7,7 +7,7 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentGroup;
 use Filament\Panel;
 use Filament\PanelProvider;
-use Filament\Support\Colors\CmykColor;
+use Filament\Support\Colors\Color;
 use Filament\Support\Facades\FilamentAsset;
 use Filament\Support\Facades\FilamentView;
 use Filament\View\PanelsRenderHook;
@@ -38,8 +38,8 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => CmykColor::fromHex('#0F3A5F'),  // Beha navy
-                'secondary' => CmykColor::fromHex('#C8A24B'), // Beha gold
+                'primary' => Color::hex('#0F3A5F'),  // Beha navy
+                'secondary' => Color::hex('#C8A24B'), // Beha gold
             ])
             ->brandName('Beha Admin')
             ->brandLogo(asset('images/logo.png'))
