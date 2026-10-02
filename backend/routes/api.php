@@ -101,12 +101,25 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Organization
     Route::get('/generations',          [OrganizationController::class, 'generations']);
+    Route::post('/generations',         [OrganizationController::class, 'storeGeneration']);
     Route::get('/generations/{id}',     [OrganizationController::class, 'generation']);
+    Route::put('/generations/{id}',    [OrganizationController::class, 'updateGeneration']);
+    Route::delete('/generations/{id}', [OrganizationController::class, 'destroyGeneration']);
+
     Route::get('/branches',             [OrganizationController::class, 'branches']);
+    Route::post('/branches',            [OrganizationController::class, 'storeBranch']);
     Route::get('/branches/{id}',        [OrganizationController::class, 'branch']);
+    Route::put('/branches/{id}',       [OrganizationController::class, 'updateBranch']);
+    Route::delete('/branches/{id}',    [OrganizationController::class, 'destroyBranch']);
+
     Route::get('/teams',                [OrganizationController::class, 'teams']);
+    Route::post('/teams',              [OrganizationController::class, 'storeTeam']);
     Route::get('/teams/{id}',           [OrganizationController::class, 'team']);
+    Route::put('/teams/{id}',          [OrganizationController::class, 'updateTeam']);
+    Route::delete('/teams/{id}',       [OrganizationController::class, 'destroyTeam']);
+
     Route::get('/organization/tree',    [OrganizationController::class, 'tree']);
+    Route::get('/organization/capacity', [OrganizationController::class, 'capacity']);
 
     // Workflows
     Route::get('/workflows',            [WorkflowController::class, 'index']);

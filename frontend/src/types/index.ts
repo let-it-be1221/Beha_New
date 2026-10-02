@@ -194,6 +194,8 @@ export interface Generation {
   generation_number: number;
   is_active: boolean;
   leader_user_id: number | null;
+  description?: string | null;
+  leader?: { id: number; username: string; official_id: string } | null;
   branches?: Branch[];
 }
 
@@ -204,6 +206,8 @@ export interface Branch {
   branch_number: number;
   is_active: boolean;
   leader_user_id: number | null;
+  description?: string | null;
+  leader?: { id: number; username: string } | null;
   teams?: Team[];
 }
 
@@ -214,6 +218,8 @@ export interface Team {
   team_number: number;
   is_active: boolean;
   leader_user_id: number | null;
+  description?: string | null;
+  leader?: { id: number; username: string } | null;
   members?: TeamMember[];
 }
 
