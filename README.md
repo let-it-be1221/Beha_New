@@ -172,7 +172,8 @@ This will:
 2. Seed the 9 roles + ~70 permissions
 3. Seed the 5 user levels
 4. Seed the system settings
-5. **Print a one-time temporary admin password to the terminal** — copy it now
+5. Create the default System Administrator (temp password printed to console)
+6. **Create demo users for every role** (each with sample customers, properties, applicants, workflows) so dashboards render non-empty stats on first run
 
 You should see something like:
 
@@ -185,7 +186,22 @@ Default System Administrator created:
   TEMP PASSWORD (shown once): <24-char string>
   → You will be forced to change this on first login.
 ───────────────────────────────────────────────────
+
+═══════════════════════════════════════════════════════
+  DEMO LOGIN CREDENTIALS (password: Demo1234!)
+  → Login at http://localhost:5173/login
+═══════════════════════════════════════════════════════
+  [executive_officer]  executive@beha.local    Demo1234!
+  [record_officer]     record@beha.local        Demo1234!
+  [finance_officer]    finance@beha.local       Demo1234!
+  [generation_leader]  genleader@beha.local     Demo1234! (Level 5)
+  [branch_leader]      branchleader@beha.local  Demo1234! (Level 4)
+  [team_leader]        teamleader@beha.local    Demo1234! (Level 3)
+  [team_member]        teammember@beha.local     Demo1234! (Level 1)
+═══════════════════════════════════════════════════════
 ```
+
+Copy the admin temp password now (it's shown only once). The demo role users have password `Demo1234!` and don't require a password change.
 
 ### 5. (Optional) Publish storage link
 

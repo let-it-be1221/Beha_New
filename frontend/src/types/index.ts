@@ -227,3 +227,51 @@ export interface TeamMember {
   is_active: boolean;
   user?: Pick<User, 'id' | 'official_id' | 'username'>;
 }
+
+// ─── Dashboard types ────────────────────────────────────────────────────
+
+export type DashboardRole =
+  | 'system_administrator'
+  | 'executive_officer'
+  | 'record_officer'
+  | 'finance_officer'
+  | 'generation_leader'
+  | 'branch_leader'
+  | 'team_leader'
+  | 'team_member'
+  | 'guest';
+
+export interface DashboardStat {
+  label: string;
+  value: number | string;
+  icon: string;            // lucide icon name (e.g. 'users', 'building')
+  is_currency?: boolean;
+}
+
+export interface DashboardPendingItem {
+  id: number;
+  title: string;
+  subtitle: string;
+  meta: string;
+  route: string;
+}
+
+export interface DashboardActivityItem {
+  id: number;
+  action: string;
+  actor: string;
+  category: string | null;
+  severity: 'info' | 'warning' | 'critical';
+  created_at: string;
+}
+
+export interface DashboardStats {
+  role: DashboardRole;
+  role_label: string;
+  stats: DashboardStat[];
+  pending: {
+    type: string;
+    items: DashboardPendingItem[];
+  };
+  recent_activity: DashboardActivityItem[];
+}

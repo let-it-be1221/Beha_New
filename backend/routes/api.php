@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Auth\TokenController;
 use App\Http\Controllers\Api\AuditLogController;
 use App\Http\Controllers\Api\ApplicantController;
 use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\EvaluationController;
 use App\Http\Controllers\Api\OrganizationController;
 use App\Http\Controllers\Api\PropertyController;
@@ -66,6 +67,10 @@ Route::middleware('auth:sanctum')->group(function () {
     // Current user
     Route::get('/me', [SanctumAuthController::class, 'me'])
         ->name('api.me');
+
+    // Dashboard — role-aware stats endpoint
+    Route::get('/dashboard/stats', [DashboardController::class, 'stats'])
+        ->name('api.dashboard.stats');
 
     // Force password change (spec §19)
     Route::post('/auth/change-password', [SanctumAuthController::class, 'changePassword'])
