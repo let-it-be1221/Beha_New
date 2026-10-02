@@ -12,6 +12,8 @@ import { PropertyCreatePage } from './pages/PropertyCreatePage';
 import { PropertyDetailPage } from './pages/PropertyDetailPage';
 import { ApplicantsListPage } from './pages/ApplicantsListPage';
 import { ApplicantDetailPage } from './pages/ApplicantDetailPage';
+import { ApplyPage } from './pages/ApplyPage';
+import { ApplySuccessPage } from './pages/ApplySuccessPage';
 import { WorkflowsListPage } from './pages/WorkflowsListPage';
 import { WorkflowDetailPage } from './pages/WorkflowDetailPage';
 import { OrganizationPage } from './pages/OrganizationPage';
@@ -52,7 +54,11 @@ function PublicOnly({ children }: { children: JSX.Element }) {
 export default function App() {
   return (
     <Routes>
+      {/* Public routes */}
       <Route path="/login" element={<PublicOnly><LoginPage /></PublicOnly>} />
+      <Route path="/apply" element={<ApplyPage />} />
+      <Route path="/apply/success" element={<ApplySuccessPage />} />
+
       <Route path="/force-password-change" element={<Protected><ForcePasswordChangePage /></Protected>} />
 
       <Route

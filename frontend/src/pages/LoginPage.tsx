@@ -91,7 +91,7 @@ export function LoginPage() {
         <div className="my-6 border-t border-gray-200" />
         <p className="text-sm text-center text-gray-600">
           New applicant?{' '}
-          <a href={`${API_BASE_URL}/applicants/apply`} className="text-beha-navy font-medium hover:underline">
+          <a href="/apply" className="text-beha-navy font-medium hover:underline">
             Apply to join →
           </a>
         </p>
