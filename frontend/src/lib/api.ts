@@ -41,24 +41,22 @@ http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   return config;
 });
 
-// Response interceptor — handle 401 by redirecting to login
+// Response interceptor — handle 419 CSRF mismatch by silently refreshing the cookie.
+//
+// 401 handling is delegated to the AuthProvider + Protected route wrapper —
+// the React state machine redirects to /login via React Router, avoiding
+// full-page reloads.
 http.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => {
-    if (error.response?.status === 401) {
-      // Only redirect if we're not already on a login page
-      if (!window.location.pathname.startsWith('/login')) {
-        // Clear any stale token
-        setBearerToken(null);
-        // Redirect to login page (React Router will pick this up)
-        window.location.href = '/login';
-      }
-    }
     if (error.response?.status === 419) {
-      // CSRF token mismatch — refresh the CSRF cookie then prompt user to retry
-      console.error('CSRF token mismatch (419). Refreshing cookie — please retry your action.');
-      // Re-fetch the CSRF cookie silently
-      http.get('/sanctum/csrf-cookie' as never, { baseURL: 'http://localhost:8000' } as never).catch(() => {});
+      console.error('CSRF token mismatch (419). Refreshing cookie — please retry.');
+      // Refresh CSRF cookie silently so the next retry succeeds.
+      axios
+        .get(`${import.meta.env.VITE_API_URL ?? 'http://localhost:8000'}/sanctum/csrf-cookie`, {
+          withCredentials: true,
+        })
+        .catch(() => {});
     }
     return Promise.reject(error);
   },

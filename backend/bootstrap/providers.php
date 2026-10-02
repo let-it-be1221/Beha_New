@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Laravel application bootstrap providers list.
- * Bootstrappers run before any service provider; do not place domain logic here.
+ * Beha Backend — Service Provider registration.
+ *
+ * In Laravel 11+ this file replaces the old config/app.php `providers` array.
+ * Bootstrap classes are auto-loaded by the framework; do NOT list them here.
  */
 
 return [
-    Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables::class,
-    Illuminate\Foundation\Bootstrap\LoadConfiguration::class,
-    Illuminate\Foundation\Bootstrap\HandleExceptions::class,
-    Illuminate\Foundation\Bootstrap\RegisterFacades::class,
-    Illuminate\Foundation\Bootstrap\RegisterProviders::class,
-    Illuminate\Foundation\Bootstrap\BootProviders::class,
+    App\Providers\AppServiceProvider::class,
+    App\Providers\AuthServiceProvider::class,
+    App\Providers\Filament\AdminPanelProvider::class,
+    App\Providers\RouteServiceProvider::class,
 ];

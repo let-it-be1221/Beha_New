@@ -5,8 +5,10 @@ import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { ForcePasswordChangePage } from './pages/ForcePasswordChangePage';
 import { CustomersListPage } from './pages/CustomersListPage';
+import { CustomerCreatePage } from './pages/CustomerCreatePage';
 import { CustomerDetailPage } from './pages/CustomerDetailPage';
 import { PropertiesListPage } from './pages/PropertiesListPage';
+import { PropertyCreatePage } from './pages/PropertyCreatePage';
 import { PropertyDetailPage } from './pages/PropertyDetailPage';
 import { ApplicantsListPage } from './pages/ApplicantsListPage';
 import { ApplicantDetailPage } from './pages/ApplicantDetailPage';
@@ -64,8 +66,10 @@ export default function App() {
         <Route index element={<Navigate to="/dashboard" replace />} />
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="customers" element={<CustomersListPage />} />
+        <Route path="customers/new" element={<CustomerCreatePage />} />
         <Route path="customers/:id" element={<CustomerDetailPage />} />
         <Route path="properties" element={<PropertiesListPage />} />
+        <Route path="properties/new" element={<PropertyCreatePage />} />
         <Route path="properties/:id" element={<PropertyDetailPage />} />
         <Route path="applicants" element={<ApplicantsListPage />} />
         <Route path="applicants/:id" element={<ApplicantDetailPage />} />

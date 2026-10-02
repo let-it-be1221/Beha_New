@@ -37,9 +37,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       );
       setUser(data.user);
       setMustChangePassword(Boolean(data.must_change_password));
-    } catch (err) {
-      setUser(null);
-      setMustChangePassword(false);
+    } catch (err: unknown) {
+      // 403 with must_change_password=true means the user IS authenticated but
+      // must change their temp password before continuing — keep them "logged in"
+      // so the ForcePasswordChangePage renders.
+      const status = (err as { response?: { status?: number; data?: { must_change_password?: boolean; user?: User } } })?.response?.status;
+      const mustChange = (err as { response?: { data?: { must_change_password?: boolean } } })?.response?.data?.must_change_password;
+      if (status === 403 && mustChange) {
+        const user = (err as { response?: { data?: { user?: User } } })?.response?.data?.user ?? null;
+        setUser(user);
+        setMustChangePassword(true);
+      } else {
+        // Genuinely unauthenticated — clear local state, the Protected route
+        // wrapper will redirect to /login via React Router.
+        setUser(null);
+        setMustChangePassword(false);
+      }
     } finally {
       setLoading(false);
     }
