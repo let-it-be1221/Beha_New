@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { ExternalLink, Shield } from 'lucide-react';
 import { useAuth } from '../lib/auth';
-import { http } from '../lib/api';
+import { API_ROOT_URL, http } from '../lib/api';
 import { StatCard } from '../components/StatCard';
 import { PendingList } from '../components/PendingList';
 import { RecentActivity } from '../components/RecentActivity';
@@ -79,7 +79,7 @@ export function DashboardPage() {
         {/* Filament admin link for system_administrator */}
         {data.role === 'system_administrator' && (
           <a
-            href="http://localhost:8000/admin"
+            href={`${API_ROOT_URL}/admin`}
             target="_blank"
             rel="noreferrer"
             className="btn-secondary"

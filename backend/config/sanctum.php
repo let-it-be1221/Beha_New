@@ -11,7 +11,7 @@ return [
     'expiration' => null,
     'token_prefix' => env('SANCTUM_TOKEN_PREFIX', 'beha_'),
     'middleware' => [
-        'authenticate_session' => Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+        'authenticate_session' => Illuminate\Session\Middleware\AuthenticateSession::class,
         'encrypt_cookies'      => Illuminate\Cookie\Middleware\EncryptCookies::class,
         'validate_csrf_token'   => Illuminate\Foundation\Http\Middleware\ValidateCsrfToken::class,
     ],

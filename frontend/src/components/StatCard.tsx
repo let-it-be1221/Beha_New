@@ -1,6 +1,6 @@
 import {
   Activity, AlertTriangle, Award, BadgeCheck, Building, Building2, CheckCircle, ClipboardList,
-  Copy, DollarSign, GitBranch, Globe, Hash, IdCard, Network, QrCode, UserCheck, UserClock,
+  Clock3, ContactRound, Copy, DollarSign, GitBranch, Globe, Hash, Network, QrCode, UserCheck,
   UserPlus, Users, Workflow, type LucideIcon,
 } from 'lucide-react';
 import { formatPrice } from '../lib/utils';
@@ -10,7 +10,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   users: Users,
   'users-2': Users,
   'user-check': UserCheck,
-  'user-clock': UserClock,
+  'user-clock': Clock3,
   'user-plus': UserPlus,
   contact: UserCheck,
   network: Network,
@@ -25,7 +25,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   globe: Globe,
   'dollar-sign': DollarSign,
   copy: Copy,
-  'id-card': IdCard,
+  'id-card': ContactRound,
   hash: Hash,
   'qr-code': QrCode,
   award: Award,

@@ -41,17 +41,14 @@ Route::get('/properties/{property}', [\App\Http\Controllers\Api\PublicPropertyCo
 Route::post('/applicants/apply', [ApplicantController::class, 'apply']);
 
 // ─── SPA cookie auth (stateful) ─────────────────────────────────────────
-Route::middleware('web')->group(function () {
-    Route::get('/auth/csrf-cookie', [\Laravel\Sanctum\Http\Controllers\CsrfCookieController::class, 'show'])
-        ->name('api.auth.csrf');
+// EnsureFrontendRequestsAreStateful applies the web middleware to trusted SPA
+// requests; do not wrap these routes in web a second time.
+Route::post('/auth/login', [SanctumAuthController::class, 'login'])
+    ->name('api.auth.login');
 
-    Route::post('/auth/login',   [SanctumAuthController::class, 'login'])
-        ->name('api.auth.login');
-
-    Route::post('/auth/forgot-password', [SanctumAuthController::class, 'sendResetLink'])
-        ->middleware('throttle:5,1');
-    Route::post('/auth/reset-password',  [SanctumAuthController::class, 'resetPassword']);
-});
+Route::post('/auth/forgot-password', [SanctumAuthController::class, 'sendResetLink'])
+    ->middleware('throttle:5,1');
+Route::post('/auth/reset-password', [SanctumAuthController::class, 'resetPassword']);
 
 // ─── Authenticated endpoints ───────────────────────────────────────────
 Route::middleware('auth:sanctum')->group(function () {
@@ -65,6 +62,9 @@ Route::middleware('auth:sanctum')->group(function () {
         ->name('api.auth.token.destroy');
 
     // Current user
+    Route::get('/auth/me', [SanctumAuthController::class, 'me'])
+        ->name('api.auth.me');
+
     Route::get('/me', [SanctumAuthController::class, 'me'])
         ->name('api.me');
 

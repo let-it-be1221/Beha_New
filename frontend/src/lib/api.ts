@@ -8,7 +8,8 @@
 
 import axios, { AxiosError, type AxiosInstance, type InternalAxiosRequestConfig } from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000/api/v1';
+export const API_BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000/api/v1';
+export const API_ROOT_URL = new URL(API_BASE_URL).origin;
 
 export const http: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
@@ -53,7 +54,7 @@ http.interceptors.response.use(
       console.error('CSRF token mismatch (419). Refreshing cookie — please retry.');
       // Refresh CSRF cookie silently so the next retry succeeds.
       axios
-        .get(`${import.meta.env.VITE_API_URL ?? 'http://localhost:8000'}/sanctum/csrf-cookie`, {
+        .get(`${API_ROOT_URL}/sanctum/csrf-cookie`, {
           withCredentials: true,
         })
         .catch(() => {});
@@ -69,7 +70,7 @@ http.interceptors.response.use(
  */
 export async function fetchCsrfToken(): Promise<void> {
   // The csrf-cookie endpoint is on the Laravel root (not /api/v1)
-  await axios.get(`${import.meta.env.VITE_API_URL ?? 'http://localhost:8000'}/sanctum/csrf-cookie`, {
+  await axios.get(`${API_ROOT_URL}/sanctum/csrf-cookie`, {
     withCredentials: true,
   });
 }
