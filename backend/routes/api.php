@@ -91,11 +91,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/customers/{customer}/evaluate', [CustomerController::class, 'evaluate']);
     Route::post('/customers/{customer}/approve',   [CustomerController::class, 'approve']);
     Route::post('/customers/{customer}/reject',    [CustomerController::class, 'reject']);
+    Route::post('/customers/{customer}/duplicates/{duplicateId}/resolve', [CustomerController::class, 'resolveDuplicate']);
 
     Route::apiResource('properties', PropertyController::class);
     Route::post('/properties/{property}/verify',           [PropertyController::class, 'verify']);
     Route::post('/properties/{property}/assign-asset-code',[PropertyController::class, 'assignAssetCode']);
     Route::post('/properties/{property}/publish',          [PropertyController::class, 'publish']);
+    Route::post('/properties/{property}/unpublish',        [PropertyController::class, 'unpublish']);
 
     Route::apiResource('evaluations', EvaluationController::class);
 
