@@ -45,7 +45,7 @@ export type CustomerStatus =
 
 export interface Customer {
   id: number;
-  reference_code: string;
+  reference_code: string | null;
   full_name: string;
   email: string | null;
   phone: string;

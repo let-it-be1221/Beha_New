@@ -32,7 +32,7 @@ export function CustomerDetailPage() {
           <Link to="/customers" className="text-sm text-gray-500 hover:text-gray-700">← Back to customers</Link>
           <h1 className="text-2xl font-bold mt-1">{data.full_name}</h1>
           <p className="text-sm text-gray-500">
-            Reference: <span className="font-mono">{data.reference_code}</span>
+            Reference: <span className="font-mono">{data.reference_code ?? <span className="text-gray-400">Pending issuance</span>}</span>
           </p>
         </div>
         <span className={`badge ${statusBadgeClass(data.status)}`}>{data.status_label}</span>

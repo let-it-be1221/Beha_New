@@ -74,7 +74,7 @@ class CustomerController extends Controller
             $team = $user->teamMember?->team;
 
             $customer = Customer::create(array_merge($request->validated(), [
-                'status'               => CustomerStatus::Draft,
+                'status'               => CustomerStatus::PendingTeamEvaluation,
                 'sales_agent_user_id' => $user->id,
                 'team_id'             => $team?->id,
                 'branch_id'           => $team?->branch_id,
@@ -82,7 +82,14 @@ class CustomerController extends Controller
             ]));
 
             // Start the customer_registration workflow (spec §8)
+            // Skip the 'draft' step — the team member is submitting, not saving as draft
             $customer->startWorkflow('customer_registration', creatorId: $user->id);
+
+            // Advance the workflow past 'draft' to 'pending_team_evaluation'
+            $instance = $customer->currentWorkflow();
+            if ($instance && $instance->current_step === 'draft') {
+                $this->workflows->advance($instance, $user, WorkflowAction::Submit, 'Customer submitted by team member');
+            }
 
             $this->audit->log(
                 action: 'customer.submit',

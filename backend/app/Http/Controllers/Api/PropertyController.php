@@ -71,13 +71,20 @@ class PropertyController extends Controller
             $user = $request->user();
 
             $property = Property::create(array_merge($request->validated(), [
-                'status'                => PropertyStatus::Draft,
+                'status'                => PropertyStatus::PendingVerification,
                 'registered_by_user_id'=> $user->id,
                 'generation_id'        => $user->teamMember?->team?->branch?->generation_id,
             ]));
 
             // Start the property_registration workflow (spec §10)
+            // Skip the 'draft' step — the generation leader is submitting, not saving as draft
             $property->startWorkflow('property_registration', creatorId: $user->id);
+
+            // Advance the workflow past 'draft' to 'pending_verification'
+            $instance = $property->currentWorkflow();
+            if ($instance && $instance->current_step === 'draft') {
+                $this->workflows->advance($instance, $user, WorkflowAction::Submit, 'Property submitted by generation leader');
+            }
 
             $this->audit->log(
                 action: 'property.submit',

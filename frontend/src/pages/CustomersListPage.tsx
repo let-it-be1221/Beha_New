@@ -38,7 +38,7 @@ export function CustomersListPage() {
                 <tr key={c.id} className="hover:bg-gray-50">
                   <td className="px-5 py-3 font-mono text-xs">
                     <Link to={`/customers/${c.id}`} className="text-beha-navy hover:underline">
-                      {c.reference_code}
+                      {c.reference_code ?? <span className="text-gray-400">Pending</span>}
                     </Link>
                   </td>
                   <td className="px-5 py-3">{c.full_name}</td>

@@ -32,8 +32,11 @@ class WorkflowEngine
 
     /**
      * Start a workflow of the given type for the given subject.
+     *
+     * @param int|null $creatorId  The user who initiated the workflow.
+     *                              NULL for public-initiated workflows (e.g. applicant apply).
      */
-    public function start(string $type, Model $subject, int $creatorId): WorkflowInstance
+    public function start(string $type, Model $subject, ?int $creatorId): WorkflowInstance
     {
         $definition = $this->definition($type);
         $firstStep  = $definition['steps'][1] ?? null;
@@ -235,18 +238,14 @@ class WorkflowEngine
 
     /**
      * Resolve the actor role string to a real user_id.
-     * For 'applicant' / 'team_member', this resolves to the subject's owner.
-     * For others (team_leader, record_officer, ...), the resolution happens
-     * at runtime via assignment services (placeholder = NULL until assigned).
+     * For 'team_member' and 'generation_leader', this resolves to the subject's owner.
+     * For 'applicant', returns NULL (applicants aren't users — any Team Leader can pick up).
+     * For system roles (team_leader, record_officer, etc.), returns NULL — resolved at runtime
+     * when a user with that role takes action.
      */
     private function resolveActorUserId(string $actorRole, Model $subject): ?int
     {
-        if ($actorRole === 'applicant' && method_exists($subject, 'id')) {
-            return $subject->id; // applicant is the subject
-        }
-
         if ($actorRole === 'team_member') {
-            // Property registration is by generation_leader, customer by team_member.
             if (method_exists($subject, 'sales_agent_user_id')) {
                 return $subject->sales_agent_user_id ?? null;
             }
@@ -258,8 +257,8 @@ class WorkflowEngine
             }
         }
 
-        // System roles are not pre-bound — left NULL and resolved when the
-        // workflow advances to a step owned by them.
+        // 'applicant' role → NULL (applicants aren't in users table; any Team Leader can pick up)
+        // System roles → NULL (resolved at runtime when a user takes action)
         return null;
     }
 }

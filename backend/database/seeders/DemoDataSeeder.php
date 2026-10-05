@@ -136,24 +136,29 @@ class DemoDataSeeder extends Seeder
 
     private function seedCustomers(User $agent, Team $team, Branch $branch, Generation $gen): void
     {
-        $statuses = [
-            CustomerStatus::Draft,
-            CustomerStatus::PendingTeamEvaluation,
-            CustomerStatus::ApprovedByTeam,
-            CustomerStatus::PendingRecordApproval,
-            CustomerStatus::Registered,
+        // Customers in various workflow states — only Registered ones have reference codes
+        $customers = [
+            ['status' => CustomerStatus::PendingTeamEvaluation, 'has_ref' => false, 'name' => 'Abebe Bekele'],
+            ['status' => CustomerStatus::PendingTeamEvaluation, 'has_ref' => false, 'name' => 'Sara Ahmed'],
+            ['status' => CustomerStatus::PendingRecordApproval, 'has_ref' => false, 'name' => 'Dawit Tadesse'],
+            ['status' => CustomerStatus::Registered,             'has_ref' => true,  'name' => 'Meron Girma'],
+            ['status' => CustomerStatus::Registered,             'has_ref' => true,  'name' => 'Yonas Hailu'],
+            ['status' => CustomerStatus::Registered,             'has_ref' => true,  'name' => 'Hanna Solomon'],
         ];
         $faker = \Faker\Factory::create();
         $year = now()->year;
         $seq = 0;
 
-        foreach ($statuses as $status) {
+        foreach ($customers as $c) {
             $seq++;
-            $refCode = "CUS-{$year}-" . str_pad((string) (1000 + $seq), 6, '0', STR_PAD_LEFT);
+            $refCode = $c['has_ref']
+                ? "CUS-{$year}-" . str_pad((string) (1000 + $seq), 6, '0', STR_PAD_LEFT)
+                : null;
+
             Customer::firstOrCreate(
-                ['reference_code' => $refCode],
+                ['full_name' => $c['name']],
                 [
-                    'full_name'             => $faker->name(),
+                    'reference_code'        => $refCode,
                     'email'                 => $faker->unique()->safeEmail(),
                     'phone'                 => $faker->phoneNumber(),
                     'national_id'           => 'ID-' . $faker->unique()->randomNumber(7, true),
@@ -162,7 +167,7 @@ class DemoDataSeeder extends Seeder
                     'team_id'               => $team->id,
                     'branch_id'             => $branch->id,
                     'generation_id'         => $gen->id,
-                    'status'                => $status,
+                    'status'                => $c['status'],
                 ],
             );
         }

@@ -80,8 +80,8 @@ class ApplicantController extends Controller
                 'terms_accepted_at'   => now(),
             ]));
 
-            // Start the workflow — current_owner_user_id is NULL until a Team Leader picks it up.
-            $applicant->startWorkflow('applicant_onboarding', creatorId: 0);
+            // Start the workflow — creatorId is NULL (public, no authenticated user)
+            $applicant->startWorkflow('applicant_onboarding', creatorId: null);
 
             $this->audit->log(
                 action: 'applicant.submit',
