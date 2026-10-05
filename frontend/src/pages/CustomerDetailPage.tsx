@@ -4,9 +4,9 @@ import { Link, useParams } from 'react-router-dom';
 import { http } from '../lib/api';
 import { useAuth } from '../lib/auth';
 import { Timeline, type TimelineStep } from '../components/Timeline';
-import { formatDate, statusBadgeClass } from '../lib/utils';
+import { statusBadgeClass } from '../lib/utils';
 import type { Customer, CustomerStatus } from '../types';
-import { CheckCircle, XCircle, AlertTriangle, Hash, ArrowRight, Copy } from 'lucide-react';
+import { CheckCircle, Hash, ArrowRight, Copy, AlertTriangle } from 'lucide-react';
 
 export function CustomerDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -278,7 +278,7 @@ function buildTimeline(customer: Customer): TimelineStep[] {
 
   const currentIndex = statuses.indexOf(customer.status);
   const isRejected = customer.status === 'rejected';
-  const isCorrection = customer.status === 'correction_required';
+  // correction_required status uses 'pending' rendering for non-current steps
 
   const labelMap: Record<string, string> = {
     draft: 'Draft Created',

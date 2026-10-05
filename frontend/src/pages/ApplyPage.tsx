@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { http, fetchCsrfToken } from '../lib/api';
-import { Check, ChevronLeft, ChevronRight, GraduationCap, IdCard, Mail, Phone, User, Briefcase, FileText } from 'lucide-react';
+import { Check, ChevronLeft, ChevronRight, GraduationCap, CreditCard, Mail, Phone, User, Briefcase, FileText } from 'lucide-react';
 
 interface FormData {
   full_name: string;
@@ -126,7 +126,7 @@ export function ApplyPage() {
               <Field icon={User} label="Full Name *" required>
                 <input value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} className="input" placeholder="John Doe" />
               </Field>
-              <Field icon={IdCard} label="National ID *" required>
+              <Field icon={CreditCard} label="National ID *" required>
                 <input value={form.national_id} onChange={(e) => setForm({ ...form, national_id: e.target.value })} className="input" placeholder="ID-1234567" />
               </Field>
               <Field icon={FileText} label="Address">

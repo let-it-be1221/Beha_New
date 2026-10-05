@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link, useParams } from 'react-router-dom';
 import { http } from '../lib/api';
 import { useAuth } from '../lib/auth';
-import { Modal } from '../components/Modal';
 import { Timeline, type TimelineStep } from '../components/Timeline';
 import { formatDate, statusBadgeClass } from '../lib/utils';
 import type { Applicant, Generation, Branch, Team, ApplicantStatus } from '../types';
-import { CheckCircle, XCircle, AlertTriangle, IdCard, UserPlus, ArrowRight } from 'lucide-react';
+import { CheckCircle, CreditCard, UserPlus, ArrowRight } from 'lucide-react';
 
 export function ApplicantDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -83,7 +82,7 @@ export function ApplicantDetailPage() {
           {data.official_id && (
             <div className="card p-5">
               <h2 className="font-semibold mb-3 flex items-center gap-2">
-                <IdCard className="h-4 w-4" />
+                <CreditCard className="h-4 w-4" />
                 Generated IDs
               </h2>
               <dl className="text-sm space-y-2">
@@ -322,7 +321,7 @@ function GenerateIdsPanel({ applicant, onAction }: { applicant: Applicant; onAct
   return (
     <div className="card p-5">
       <h2 className="font-semibold mb-3 flex items-center gap-2">
-        <IdCard className="h-4 w-4 text-beha-navy" />
+        <CreditCard className="h-4 w-4 text-beha-navy" />
         Identity Generation
       </h2>
       <p className="text-sm text-gray-500 mb-3">

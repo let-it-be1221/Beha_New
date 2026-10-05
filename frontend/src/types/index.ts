@@ -89,6 +89,7 @@ export interface Property {
   amenities: string[] | null;
   registered_by: { id: number; official_id: string; username: string } | null;
   created_at: string;
+  updated_at?: string;
 }
 
 export type ApplicantStatus =

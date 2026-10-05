@@ -6,7 +6,7 @@ import { useAuth } from '../lib/auth';
 import { Timeline, type TimelineStep } from '../components/Timeline';
 import { formatDate, formatPrice, statusBadgeClass } from '../lib/utils';
 import type { Property, PropertyStatus } from '../types';
-import { Building2, CheckCircle, Globe, IdCard, ArrowRight, Globe2 } from 'lucide-react';
+import { CheckCircle, Globe, CreditCard, ArrowRight, Globe2 } from "lucide-react";
 
 export function PropertyDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -189,7 +189,7 @@ function AssignAssetCodePanel({ property }: { property: Property }) {
   return (
     <div className="card p-5">
       <h2 className="font-semibold mb-3 flex items-center gap-2">
-        <IdCard className="h-4 w-4 text-beha-navy" />
+        <CreditCard className="h-4 w-4 text-beha-navy" />
         Asset Coding & Publication
       </h2>
       <p className="text-sm text-gray-500 mb-3">

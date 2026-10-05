@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { http } from '../lib/api';
 import { Modal } from '../components/Modal';
-import { Building2, ChevronDown, GitBranch, Network, Pencil, Plus, Trash2, Users } from 'lucide-react';
+import { Network, Pencil, Plus, Trash2, Users } from 'lucide-react';
 import type { Branch, Generation, Team } from '../types';
 import { cn } from '../lib/utils';
 
@@ -24,7 +24,7 @@ export function OrganizationPage() {
         <TabButton active={tab === 'generations'} onClick={() => setTab('generations')} icon={Network}>
           Generations
         </TabButton>
-        <TabButton active={tab === 'branches'} onClick={() => setTab('branches')} icon={GitBranch}>
+        <TabButton active={tab === 'branches'} onClick={() => setTab('branches')} icon={Network}>
           Branches
         </TabButton>
         <TabButton active={tab === 'teams'} onClick={() => setTab('teams')} icon={Users}>

@@ -1,12 +1,15 @@
 import {
   Activity, AlertTriangle, Award, BadgeCheck, Building, Building2, CheckCircle, ClipboardList,
   Clock3, ContactRound, Copy, DollarSign, GitBranch, Globe, Hash, Network, QrCode, UserCheck,
-  UserPlus, Users, Workflow, type LucideIcon,
+  UserPlus, Users, Workflow,
 } from 'lucide-react';
+import type { ComponentType, SVGProps } from 'react';
 import { formatPrice } from '../lib/utils';
 import type { DashboardStat } from '../types';
 
-const ICON_MAP: Record<string, LucideIcon> = {
+type IconType = ComponentType<SVGProps<SVGSVGElement>>;
+
+const ICON_MAP: Record<string, IconType> = {
   users: Users,
   'users-2': Users,
   'user-check': UserCheck,

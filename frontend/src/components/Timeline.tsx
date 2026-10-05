@@ -5,7 +5,7 @@ export interface TimelineStep {
   label: string;
   description?: string;
   status: 'completed' | 'current' | 'pending' | 'rejected';
-  timestamp?: string;
+  timestamp?: string | null;
 }
 
 interface Props {
