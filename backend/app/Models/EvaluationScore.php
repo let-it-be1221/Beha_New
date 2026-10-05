@@ -11,5 +11,7 @@ class EvaluationScore extends Model
 
     protected $table = 'evaluation_scores';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'evaluation_id', 'criterion_id', 'score', 'comment',
+    ];
 }

@@ -11,5 +11,7 @@ class WorkflowDefinition extends Model
 
     protected $table = 'workflow_definitions';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'code', 'label', 'config', 'is_active',
+    ];
 }

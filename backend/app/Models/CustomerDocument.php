@@ -11,5 +11,7 @@ class CustomerDocument extends Model
 
     protected $table = 'customer_documents';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'customer_id', 'document_type', 'file_path', 'file_name', 'mime_type', 'size_bytes', 'uploaded_by',
+    ];
 }

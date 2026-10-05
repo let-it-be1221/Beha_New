@@ -11,5 +11,7 @@ class PropertyVerification extends Model
 
     protected $table = 'property_verifications';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'property_id', 'verifier_user_id', 'decision', 'comment',
+    ];
 }

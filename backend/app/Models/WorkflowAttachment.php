@@ -11,5 +11,7 @@ class WorkflowAttachment extends Model
 
     protected $table = 'workflow_attachments';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'workflow_instance_id', 'uploaded_by', 'file_path', 'file_name', 'mime_type', 'size_bytes',
+    ];
 }

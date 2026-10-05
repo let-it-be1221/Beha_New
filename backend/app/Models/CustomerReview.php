@@ -11,5 +11,7 @@ class CustomerReview extends Model
 
     protected $table = 'customer_reviews';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'customer_id', 'reviewer_user_id', 'review_stage', 'decision', 'comment',
+    ];
 }

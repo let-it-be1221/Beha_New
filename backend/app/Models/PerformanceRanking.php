@@ -11,5 +11,7 @@ class PerformanceRanking extends Model
 
     protected $table = 'performance_rankings';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'team_member_id', 'rank_in_team', 'rank_in_branch', 'rank_in_generation', 'overall_score', 'recalculated_at',
+    ];
 }

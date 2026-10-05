@@ -11,5 +11,7 @@ class ApplicantReview extends Model
 
     protected $table = 'applicant_reviews';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'applicant_id', 'reviewer_user_id', 'review_stage', 'decision', 'comment',
+    ];
 }

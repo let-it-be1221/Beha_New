@@ -11,5 +11,7 @@ class PropertyDocument extends Model
 
     protected $table = 'property_documents';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'property_id', 'document_type', 'file_path', 'file_name', 'mime_type', 'size_bytes', 'uploaded_by',
+    ];
 }

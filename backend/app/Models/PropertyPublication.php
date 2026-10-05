@@ -11,5 +11,7 @@ class PropertyPublication extends Model
 
     protected $table = 'property_publications';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'property_id', 'published_by', 'published_at', 'unpublished_by', 'unpublished_at',
+    ];
 }

@@ -11,5 +11,7 @@ class PropertyAsset extends Model
 
     protected $table = 'property_assets';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'property_id', 'asset_code', 'assigned_by',
+    ];
 }

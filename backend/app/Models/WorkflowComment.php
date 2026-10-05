@@ -11,5 +11,7 @@ class WorkflowComment extends Model
 
     protected $table = 'workflow_comments';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'workflow_instance_id', 'author_user_id', 'body',
+    ];
 }

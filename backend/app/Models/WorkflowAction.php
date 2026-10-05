@@ -11,5 +11,7 @@ class WorkflowAction extends Model
 
     protected $table = 'workflow_actions';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'workflow_instance_id', 'actor_user_id', 'action', 'from_step', 'to_step', 'comment', 'ip_address', 'user_agent',
+    ];
 }

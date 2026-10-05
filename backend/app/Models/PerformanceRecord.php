@@ -11,5 +11,7 @@ class PerformanceRecord extends Model
 
     protected $table = 'performance_records';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'team_member_id', 'period_start', 'period_end', 'metric', 'value',
+    ];
 }

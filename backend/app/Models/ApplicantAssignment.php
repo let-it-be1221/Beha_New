@@ -11,5 +11,7 @@ class ApplicantAssignment extends Model
 
     protected $table = 'applicant_assignments';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'applicant_id', 'assigner_user_id', 'generation_id', 'branch_id', 'team_id',
+    ];
 }

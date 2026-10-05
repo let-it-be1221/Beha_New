@@ -11,5 +11,7 @@ class CustomerReference extends Model
 
     protected $table = 'customer_references';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'customer_id', 'reference_code', 'issued_by', 'note',
+    ];
 }

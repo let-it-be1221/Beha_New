@@ -11,5 +11,7 @@ class PropertyImage extends Model
 
     protected $table = 'property_images';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'property_id', 'file_path', 'caption', 'is_primary', 'sort_order',
+    ];
 }

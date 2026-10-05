@@ -11,5 +11,7 @@ class NotificationTemplate extends Model
 
     protected $table = 'notification_templates';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'code', 'channel', 'subject', 'body', 'is_active', 'variables',
+    ];
 }

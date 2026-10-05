@@ -11,5 +11,7 @@ class PerformanceRankingHistory extends Model
 
     protected $table = 'performance_ranking_history';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'team_member_id', 'rank_in_team', 'rank_in_branch', 'rank_in_generation', 'overall_score', 'reason',
+    ];
 }

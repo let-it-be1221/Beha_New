@@ -11,5 +11,7 @@ class UserLevel extends Model
 
     protected $table = 'user_levels';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'code', 'name', 'description', 'is_active',
+    ];
 }

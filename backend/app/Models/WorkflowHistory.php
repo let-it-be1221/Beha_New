@@ -11,5 +11,7 @@ class WorkflowHistory extends Model
 
     protected $table = 'workflow_history';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'workflow_instance_id', 'from_step', 'to_step', 'actor_user_id', 'action', 'metadata',
+    ];
 }
