@@ -14,4 +14,6 @@ class ApplicantAssignment extends Model
     protected $fillable = [
         'applicant_id', 'assigner_user_id', 'generation_id', 'branch_id', 'team_id',
     ];
+
+    public $timestamps = false;
 }

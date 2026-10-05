@@ -14,4 +14,6 @@ class PropertyAsset extends Model
     protected $fillable = [
         'property_id', 'asset_code', 'assigned_by',
     ];
+
+    public $timestamps = false;
 }

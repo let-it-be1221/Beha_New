@@ -14,4 +14,6 @@ class WorkflowAction extends Model
     protected $fillable = [
         'workflow_instance_id', 'actor_user_id', 'action', 'from_step', 'to_step', 'comment', 'ip_address', 'user_agent',
     ];
+
+    const UPDATED_AT = null;
 }

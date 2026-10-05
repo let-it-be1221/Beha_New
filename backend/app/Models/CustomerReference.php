@@ -14,4 +14,6 @@ class CustomerReference extends Model
     protected $fillable = [
         'customer_id', 'reference_code', 'issued_by', 'note',
     ];
+
+    public $timestamps = false;
 }

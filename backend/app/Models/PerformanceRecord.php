@@ -14,4 +14,6 @@ class PerformanceRecord extends Model
     protected $fillable = [
         'team_member_id', 'period_start', 'period_end', 'metric', 'value',
     ];
+
+    public $timestamps = false;
 }

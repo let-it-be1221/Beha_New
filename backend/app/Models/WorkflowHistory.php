@@ -14,4 +14,6 @@ class WorkflowHistory extends Model
     protected $fillable = [
         'workflow_instance_id', 'from_step', 'to_step', 'actor_user_id', 'action', 'metadata',
     ];
+
+    const UPDATED_AT = null;
 }

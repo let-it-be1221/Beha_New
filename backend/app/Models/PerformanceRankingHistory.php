@@ -14,4 +14,6 @@ class PerformanceRankingHistory extends Model
     protected $fillable = [
         'team_member_id', 'rank_in_team', 'rank_in_branch', 'rank_in_generation', 'overall_score', 'reason',
     ];
+
+    public $timestamps = false;
 }

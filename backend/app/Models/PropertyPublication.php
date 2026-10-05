@@ -14,4 +14,6 @@ class PropertyPublication extends Model
     protected $fillable = [
         'property_id', 'published_by', 'published_at', 'unpublished_by', 'unpublished_at',
     ];
+
+    public $timestamps = false;
 }

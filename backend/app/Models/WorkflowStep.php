@@ -14,4 +14,6 @@ class WorkflowStep extends Model
     protected $fillable = [
         'workflow_instance_id', 'step_index', 'step_name', 'actor_role', 'expected_action', 'completed_at', 'completed_by',
     ];
+
+    public $timestamps = false;
 }

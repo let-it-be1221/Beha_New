@@ -14,4 +14,6 @@ class LevelPromotion extends Model
     protected $fillable = [
         'team_member_id', 'evaluation_id', 'from_level', 'to_level', 'decision', 'approved_by', 'notes',
     ];
+
+    const UPDATED_AT = null;
 }
